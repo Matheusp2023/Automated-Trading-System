@@ -2,6 +2,7 @@
 # author: Matheus Pedro
 
 import os
+from alpha_vantage.timeseries import TimeSeries
 import requests
 import time
 
@@ -17,37 +18,29 @@ def clearPrompt():
     else:
         print("Unable to determine operating system to clear prompt")
 
-def getDataStock(symbol):
-    endpoint = f'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={symbol}&apikey={api_key}'
-
-    try:
-        respose = requests.get(endpoint)
-        data = respose.json()
-
-        # Extracting data
-        symbol = data['Global Quote']['01. symbol']
-        price = data['Global Quote']['05. price']
-        change_percent = data['Global Quote']['10. change percent']
-
-        print(f"Symbol: {symbol}, Price: {price}, Change Percentual: {change_percent}%")
-
-    except Exception as e:
-        print(f"Error in the socitation: {e}")
-        time.sleep(3)
-        main()
-
 def realTimeAnalyis():
     symbol = input("Enter the code of the stock you want to analyze: ")
     clearPrompt()
-    print("The information will be updated every 1 minute")
+    print("Wait a few seconds before making the next request")
 
-    # Continuous updates
+    # TimeSeries class instance with API key
+    ts = TimeSeries(key=api_key, output_format='pandas')
+
     while True:
-        informations = getDataStock(symbol)
-        print(informations)
+        try:
+            # Get real-time data for action
+            data, meta_data = ts.get_quote_endpoint(symbol=symbol)
 
-        # Wait 1 minute before making the next request
-        time.sleep(60)
+            # Display price and price change
+            price = data['05. price'].iloc[0]
+            change = data['09. change'].iloc[0]
+
+            print(f'Symbol: {symbol}, Price: {price}, Change Percentual: {change}')
+        except Exception as e:
+            print(f"Error getting real-time data: {e}")
+        
+        # Wait a few seconds before making the next request
+        time.sleep(5)
 
 def main():
     while True:

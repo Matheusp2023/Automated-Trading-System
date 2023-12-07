@@ -10,6 +10,7 @@
 - Visual Studio Code (https://code.visualstudio.com/)
 - Visual Studio Installer (https://visualstudio.microsoft.com/pt-br/visual-cpp-build-tools/)
 - Python (https://www.python.org/downloads/)
+- Pandas
 - API alpha vantage
 - Git (https://git-scm.com/downloads)
 
@@ -34,6 +35,12 @@ pip install alpha_vantage
 - Check if it was installed correctly
 ```bash
 pip show alpha_vantage
+```
+
+### Pandas
+- Install the Pandas library
+```bash
+pip install pandas
 ```
 
 ### Run
