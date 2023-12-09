@@ -11,6 +11,8 @@
 - Visual Studio Installer (https://visualstudio.microsoft.com/pt-br/visual-cpp-build-tools/)
 - Python (https://www.python.org/downloads/)
 - Pandas
+- Matplotlib
+- yfinance
 - API alpha vantage
 - Git (https://git-scm.com/downloads)
 
@@ -43,6 +45,18 @@ pip show alpha_vantage
 pip install pandas
 ```
 
+### Matplotlib
+- Install the Matplotlib library
+```bash
+pip install matplotlib
+```
+
+### yfinance
+- Install the yfinance library
+```bash
+pip install yfinance
+```
+
 ### Run
 - In the program's source code directory, enter the terminal and type:
 ```bash
@@ -51,3 +65,4 @@ python main.py
 
 ## Functionalities
 - Real-time analysis of financial market data
+- Trading Strategy Implementation
