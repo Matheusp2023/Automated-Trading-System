@@ -145,10 +145,10 @@ def dayTradeStrategy(symbol):
 
     result = input("Do you want to implement a day trading strategy for this stock? [y/n]: ").lower()
 
-    if result == 's':
+    if result == 'y':
         clearPrompt()
         print("Implemented strategy!")
-    if result == 'n':
+    elif result == 'n':
         clearPrompt()
         print("Strategy not implemented!")
     else:
@@ -181,7 +181,7 @@ def buyAndHoldStrategy(symbol):
         clearPrompt()
         print("Sale made!")
     else:
-        print("Ação cancelada.")
+        print("Operation canceled!")
     
     time.sleep(3)
 
