@@ -39,22 +39,10 @@ pip install alpha_vantage
 pip show alpha_vantage
 ```
 
-### Pandas
-- Install the Pandas library
+### Libraries
+- Enter the following command to install the required libraries
 ```bash
-pip install pandas
-```
-
-### Matplotlib
-- Install the Matplotlib library
-```bash
-pip install matplotlib
-```
-
-### yfinance
-- Install the yfinance library
-```bash
-pip install yfinance
+pip install pandas matplotlib yfinance
 ```
 
 ### Run

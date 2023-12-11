@@ -5,6 +5,7 @@ import os
 import time
 import marketDataAnalysis
 import tradingStrategyImplementation
+import buySellOrderExecution
 
 def clearPrompt():
     operation_system = os.name
@@ -23,7 +24,8 @@ def main():
         print("------ Automated Trading System ------")
         print("1 - Real-time analysis of financial market data")
         print("2 - Implement and test trading strategies")
-        print("3 - Quit")
+        print("3 - Buy/Sell Order Execution")
+        print("4 - Quit")
 
         option = input("Choose a feature: ")
 
@@ -34,6 +36,9 @@ def main():
             clearPrompt()
             tradingStrategyImplementation.implementTestTradingStrategies()
         elif option == '3':
+            clearPrompt()
+            buySellOrderExecution.buySellOrderExecutionFunctionality()
+        elif option == '4':
             clearPrompt()
             quit()
         else:
