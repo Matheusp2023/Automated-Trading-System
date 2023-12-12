@@ -7,6 +7,7 @@ import marketDataAnalysis
 import tradingStrategyImplementation
 import buySellOrderExecution
 import portifolioManagement
+import riskManagementTools
 
 def clearPrompt():
     operation_system = os.name
@@ -27,7 +28,8 @@ def main():
         print("2 - Implement and test trading strategies")
         print("3 - Buy/Sell Order Execution")
         print("4 - Portfolio Management")
-        print("5 - Quit")
+        print("5 - Risk Management Tool")
+        print("6 - Quit")
 
         option = input("Choose a feature: ")
 
@@ -44,6 +46,9 @@ def main():
             clearPrompt()
             portifolioManagement.portfolioManagementFunctionality()
         elif option == '5':
+            clearPrompt()
+            riskManagementTools.riskManagementToolsFuctionality()
+        elif option == '6':
             clearPrompt()
             quit()
         else:

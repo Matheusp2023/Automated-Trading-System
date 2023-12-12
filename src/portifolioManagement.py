@@ -3,6 +3,7 @@
 
 import main
 import matplotlib.pyplot as plt
+import numpy as np
 
 class Portfolio:
     def __init__(self):
@@ -16,7 +17,7 @@ class Portfolio:
 
     def calculate_portfolio_value(self):
         total_value = 0
-        for symbol, asset in self.assets.items():
+        for asset in self.assets.items():
             total_value += asset['quantity'] * asset['price_per_unit']
         return total_value
     
@@ -30,6 +31,40 @@ class Portfolio:
 
         plt.title('Portfolio Allocation')
         plt.show()
+
+    def calculate_covariance(self, asset_i, asset_j):
+        returns_i = asset_i['returns']
+        returns_j = asset_j['returns']
+
+        xmed = np.mean(returns_i)
+        ymed = np.mean(returns_j)
+
+        covariance = np.sum([(returns_i[t] - xmed) * (returns_j[t] - ymed) for t in range(len(returns_i))]) / (len(returns_i) - 1)
+
+        return covariance
+    
+    def calculate_portfolio_volatility(self):
+        #Calculate the weights of each asset
+        weights = np.array([asset['quantity'] * asset['price_per_unit'] for asset in self.assets.values()])
+        weights /= np.sum(weights)
+
+        # Calculate the variances of each asset
+        variances = np.array([asset['price_per_unit']**2 for asset in self.assets.values()])
+
+        # Calculate the covariance between each pair of assets
+        covariance_matrix = np.zeros((len(self.assets), len(self.assets)))
+        for i, asset_i in enumerate(self.assets.keys()):
+            for j, asset_j in enumerate(self.assets.keys()):
+                if i == j:
+                    covariance_matrix[i, j] = variances[i]
+                else:
+                    covariance_matrix[i, j] = Portfolio.calculate_covariance(self, asset_i, asset_j)
+
+        # Calculate portfolio volatility
+        portfolio_variance = np.dot(weights.T, np.dot(covariance_matrix, weights))
+        portfolio_volatility = np.sqrt(portfolio_variance)
+
+        return portfolio_volatility
 
     def print_portfolio(self):
         main.clearPrompt()

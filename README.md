@@ -56,3 +56,4 @@ python main.py
 - Trading Strategy Implementation
 - Buy/Sell Order Execution
 - Portfolio Management
+- Risk Management Tools
