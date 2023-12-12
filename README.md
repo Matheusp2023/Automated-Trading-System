@@ -52,5 +52,7 @@ python main.py
 ```
 
 ## Functionalities
-- Real-time analysis of financial market data
+- Market Data Analysis
 - Trading Strategy Implementation
+- Buy/Sell Order Execution
+- Portfolio Management
