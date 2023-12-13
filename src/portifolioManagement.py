@@ -17,7 +17,7 @@ class Portfolio:
 
     def calculate_portfolio_value(self):
         total_value = 0
-        for asset in self.assets.items():
+        for symbol, asset in self.assets.items():
             total_value += asset['quantity'] * asset['price_per_unit']
         return total_value
     
