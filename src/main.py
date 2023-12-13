@@ -8,6 +8,7 @@ import tradingStrategyImplementation
 import buySellOrderExecution
 import portifolioManagement
 import riskManagementTools
+import backtestingCapabilities
 
 def clearPrompt():
     operation_system = os.name
@@ -29,7 +30,8 @@ def main():
         print("3 - Buy/Sell Order Execution")
         print("4 - Portfolio Management")
         print("5 - Risk Management Tool")
-        print("6 - Quit")
+        print("6 - Backtesting Capabilities")
+        print("7 - Quit")
 
         option = input("Choose a feature: ")
 
@@ -49,6 +51,9 @@ def main():
             clearPrompt()
             riskManagementTools.riskManagementToolsFuctionality()
         elif option == '6':
+            clearPrompt()
+            backtestingCapabilities.backtestingCapabilitiesFunctionalities()
+        elif option == '7':
             clearPrompt()
             quit()
         else:

@@ -57,3 +57,4 @@ python main.py
 - Buy/Sell Order Execution
 - Portfolio Management
 - Risk Management Tools
+- Backtesting Capabilities
