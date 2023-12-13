@@ -28,15 +28,19 @@ git clone https://github.com/Matheusp2023/Automated-Trading-System.git
 - Download and install the Visual Studio Installer
 - In the Visual Studio Installer, select "Microsoft C++ Build Tools", and click install
 
-### API alpha vantage
+### API alpha vantage and websocket
 - Download and install the python language
-- Install the API
+- Install the API alpha vantage
 ```bash
 pip install alpha_vantage
 ```
 - Check if it was installed correctly
 ```bash
 pip show alpha_vantage
+```
+- Install the API websocket
+```bash
+pip install websocket-client
 ```
 
 ### Libraries
@@ -58,3 +62,4 @@ python main.py
 - Portfolio Management
 - Risk Management Tools
 - Backtesting Capabilities
+- Real-Time Alerts and Notifications
