@@ -11,6 +11,7 @@ import riskManagementTools
 import backtestingCapabilities
 import realTimeAlertsNotifications
 import reportingAnalytics
+import userCustomizationPreferences
 
 def clearPrompt():
     operation_system = os.name
@@ -35,7 +36,8 @@ def main():
         print("6 - Backtesting Capabilities")
         print("7 - Real-Time Alerts and Notfications")
         print("8 - Reporting and Analytics")
-        print("9 - Quit")
+        print("9 - User Customization and Preferences")
+        print("10 - Quit")
 
         option = input("Choose a feature: ")
 
@@ -64,6 +66,9 @@ def main():
             clearPrompt()
             reportingAnalytics.reportingAnalyticsFunctionalitie()
         elif option == '9':
+            clearPrompt()
+            userCustomizationPreferences.userCustomizationPreferencesFunctionalities()
+        elif option == '10':
             clearPrompt()
             quit()
         else:

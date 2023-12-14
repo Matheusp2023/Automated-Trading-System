@@ -64,3 +64,4 @@ python main.py
 - Backtesting Capabilities
 - Real-Time Alerts and Notifications
 - Reporting and Analytics
+- User Customization and Preferences
