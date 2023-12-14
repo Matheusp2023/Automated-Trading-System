@@ -32,27 +32,24 @@ class UserPreferences:
 def userCustomizationPreferencesFunctionalities():
     user = UserPreferences()
 
-    while True:
-        print("\nChoose an option:")
-        print("1. Set background color")
-        print("2. Get background color")
-        print("3. Exit")
+    print("Choose an option:")
+    print("1. Set background color")
+    print("2. Get background color")
+    print("3. Exit")
 
-        choice = input("Choice: ")
+    choice = input("Choice: ")
 
-        if choice == "1":
-            color = input("Enter the background color (e.g., 'red', 'blue', 'green'): ")
-            user.set_preference('background_color', color)
-        elif choice == "2":
-            color = user.get_preference('background_color')
-            if color is not None:
-                print(f"Background color: {color}")
-            else:
-                print("Background color not set.")
-        elif choice == "3":
-            print("Exiting...")
-            break
+    if choice == "1":
+        color = input("Enter the background color (e.g., 'red', 'blue', 'green'): ")
+        user.set_preference('background_color', color)
+    elif choice == "2":
+        color = user.get_preference('background_color')
+        if color is not None:
+            print(f"Background color: {color}")
         else:
-            print("Invalid option. Please try again.")
-
-userCustomizationPreferencesFunctionalities()
+            print("Background color not set.")
+    elif choice == "3":
+        print("Exiting...")
+        return
+    else:
+        print("Invalid option. Please try again.")
