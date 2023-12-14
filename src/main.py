@@ -12,6 +12,7 @@ import backtestingCapabilities
 import realTimeAlertsNotifications
 import reportingAnalytics
 import userCustomizationPreferences
+import regulatoryComplianceFeatures
 
 def clearPrompt():
     operation_system = os.name
@@ -37,7 +38,8 @@ def main():
         print("7 - Real-Time Alerts and Notfications")
         print("8 - Reporting and Analytics")
         print("9 - User Customization and Preferences")
-        print("10 - Quit")
+        print("10 - Regulatory Compliance Features")
+        print("11 - Quit")
 
         option = input("Choose a feature: ")
 
@@ -69,6 +71,9 @@ def main():
             clearPrompt()
             userCustomizationPreferences.userCustomizationPreferencesFunctionalities()
         elif option == '10':
+            clearPrompt()
+            regulatoryComplianceFeatures.regulatoryComplianceFeaturesFunctionalities()
+        elif option == '11':
             clearPrompt()
             quit()
         else:

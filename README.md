@@ -65,3 +65,4 @@ python main.py
 - Real-Time Alerts and Notifications
 - Reporting and Analytics
 - User Customization and Preferences
+- Regulatory Compliace Features
