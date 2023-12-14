@@ -63,3 +63,4 @@ python main.py
 - Risk Management Tools
 - Backtesting Capabilities
 - Real-Time Alerts and Notifications
+- Reporting and Analytics

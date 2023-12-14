@@ -10,6 +10,7 @@ import portifolioManagement
 import riskManagementTools
 import backtestingCapabilities
 import realTimeAlertsNotifications
+import reportingAnalytics
 
 def clearPrompt():
     operation_system = os.name
@@ -33,7 +34,8 @@ def main():
         print("5 - Risk Management Tool")
         print("6 - Backtesting Capabilities")
         print("7 - Real-Time Alerts and Notfications")
-        print("8 - Quit")
+        print("8 - Reporting and Analytics")
+        print("9 - Quit")
 
         option = input("Choose a feature: ")
 
@@ -59,6 +61,9 @@ def main():
             clearPrompt()
             realTimeAlertsNotifications.realTimeAlertsNotificationsFunctionalitie()
         elif option == '8':
+            clearPrompt()
+            reportingAnalytics.reportingAnalyticsFunctionalitie()
+        elif option == '9':
             clearPrompt()
             quit()
         else:
