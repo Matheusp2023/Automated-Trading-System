@@ -14,16 +14,17 @@ class DataBase:
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT UNIQUE,
-            password TEXT
+            password TEXT,
+            email TEXT UNIQUE
         )
         '''
         self.cursor.execute(query)
         self.conn.commit()
 
-    def add_user(self, username, password):
+    def add_user(self, username, password, email):
         try:
-            query = "INSERT INTO users (username, password) VALUES (?, ?)"
-            self.cursor.execute(query, (username, password))
+            query = "INSERT INTO users (username, password, email) VALUES (?, ?, ?)"
+            self.cursor.execute(query, (username, password, email))
             self.conn.commit()
             print(f"Usuário {username} adicionado com sucesso.")
         except sqlite3.IntegrityError:
@@ -48,24 +49,24 @@ class DataBase:
         else:
             print("Login falhou. Verifique seu nome de usuário e senha.")
             return False
+        
+    def verify_username(self, username):
+        query = "SELECT * FROM users WHERE username = ?"
+        self.cursor.execute(query, (username))
+        user = self.cursor.fetchone()
+        if user:
+            return True
+        else:
+            return False
+        
+    def verify_email(self, email):
+        query = "SELECT * FROM users WHERE email = ?"
+        self.cursor.execute(query, (email))
+        user = self.cursor.fetchone()
+        if user:
+            return True
+        else:
+            return False
 
     def close_connection(self):
         self.conn.close()
-
-if __name__ == "__main__":
-    db = DataBase()
-
-    # Adicionando usuários
-    db.add_user("user1", "senha123")
-    db.add_user("user2", "senha456")
-
-    # Verificando login
-    db.verify_login("user1", "senha123")
-    db.verify_login("user1", "senha456")
-
-    # Removendo usuário
-    db.remove_user("user2")
-    db.remove_user("user3")  # Tentando remover um usuário que não existe
-
-    # Fechando a conexão
-    db.close_connection()

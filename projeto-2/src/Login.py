@@ -1,5 +1,7 @@
 import customtkinter as ctk
+import DataBase
 from tkinter import *
+from tkinter import messagebox
 from PIL import Image
 
 window = ctk.CTk()
@@ -21,6 +23,19 @@ class Login():
         window.title("Sistema de login")
         window.iconbitmap("../assets/icon.ico")
         window.resizable(False, False)
+
+    def check_information_usuary_register(self, username, email, password, confirm_password, usuary_terms_checkbox):
+        db = DataBase()
+        if db.verify_username(username):
+            return False
+        elif len(password) < 4:
+            return False
+        elif db.verify_email(email):
+            return False
+        elif password != confirm_password:
+            return False
+        else:
+            return True
     
     def login_window_screen(self):
         img_path = "../assets/log.png"
@@ -52,6 +67,7 @@ class Login():
 
             label = ctk.CTkLabel(master=rg_frame, text="Registre-se!", font=("Roboto", 20), text_color=("black", "white")).place(x=25, y=5)
 
+            # Adicionar span de verificação aqui
             span = ctk.CTkLabel(master=rg_frame, text="Por favor, preencha todos os campos corretamente.", font=("Roboto", 10), text_color="gray").place(x=25, y=80)
             username = ctk.CTkEntry(master=rg_frame, placeholder_text="Nome de usuário", width=300, font=("Roboto", 14)).place(x=25, y=105)
             email = ctk.CTkEntry(master=rg_frame, placeholder_text="E-mail de usuário", width=300, font=("Roboto", 14)).place(x=25, y=145)
