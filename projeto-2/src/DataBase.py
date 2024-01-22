@@ -26,6 +26,7 @@ class DataBase:
             query = "INSERT INTO users (username, password, email) VALUES (?, ?, ?)"
             self.cursor.execute(query, (username, password, email))
             self.conn.commit()
+            print(f"Usuário {username} adicionado com sucesso.")
         except sqlite3.IntegrityError:
             print(f"Usuário {username} já existe. Escolha outro nome de usuário.")
 
@@ -51,7 +52,7 @@ class DataBase:
         
     def verify_username(self, username):
         query = "SELECT * FROM users WHERE username = ?"
-        self.cursor.execute(query, (username,))
+        self.cursor.execute(query, (username))
         user = self.cursor.fetchone()
         if user:
             return True
@@ -60,7 +61,7 @@ class DataBase:
         
     def verify_email(self, email):
         query = "SELECT * FROM users WHERE email = ?"
-        self.cursor.execute(query, (email,))
+        self.cursor.execute(query, (email))
         user = self.cursor.fetchone()
         if user:
             return True
