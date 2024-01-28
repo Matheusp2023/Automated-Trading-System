@@ -22,19 +22,6 @@ class Login():
         window.title("Sistema de login")
         window.iconbitmap("../assets/icon.ico")
         window.resizable(False, False)
-
-    def check_information_usuary_register(self, username, email, password, confirm_password, usuary_terms_checkbox):
-        db = DataBase()
-        if db.verify_username(username):
-            return False
-        elif len(password) < 4:
-            return False
-        elif db.verify_email(email):
-            return False
-        elif password != confirm_password:
-            return False
-        else:
-            return True
     
     def login_window_screen(self):
         img_path = "../assets/log.png"
@@ -61,7 +48,12 @@ class Login():
         password_label = ctk.CTkLabel(master=login_frame, text="*O campo senha do usuário é obrigatório.", text_color="green", font=("Roboto",8))
         password_label.place(x=25, y=205)
 
-        password_checkbox = ctk.CTkCheckBox(master=login_frame, text="Lembrar da minha senha")
+        def show_password():
+            if password_checkbox.get() == 1:
+                password_entry.configure(show="")
+            else:
+                password_entry.configure(show="*")
+        password_checkbox = ctk.CTkCheckBox(master=login_frame, text="Mostrar senha", command=show_password)
         password_checkbox.place(x=25, y=235)
 
         login_button = ctk.CTkButton(master=login_frame, text="Login", width=300)
@@ -75,8 +67,6 @@ class Login():
             label = ctk.CTkLabel(master=rg_frame, text="Registre-se!", font=("Roboto", 20), text_color=("black", "white"))
             label.place(x=25, y=5)
 
-            span = ctk.CTkLabel(master=rg_frame, text="Por favor, preencha todos os campos corretamente.", font=("Roboto", 10), text_color="gray")
-            span.place(x=25, y=80)
             username = ctk.CTkEntry(master=rg_frame, placeholder_text="Nome de usuário", width=300, font=("Roboto", 14))
             username.place(x=25, y=105)
             email = ctk.CTkEntry(master=rg_frame, placeholder_text="E-mail de usuário", width=300, font=("Roboto", 14))
@@ -92,10 +82,38 @@ class Login():
             def back():
                 rg_frame.pack_forget()
                 login_frame.pack(side=RIGHT)
-                
             back_button = ctk.CTkButton(master=rg_frame, text="VOLTAR", width=145, fg_color="gray", hover_color="#202020", command=back)
             back_button.place(x=25, y=300)
-            save_button = ctk.CTkButton(master=rg_frame, text="CADASTRAR", width=145, fg_color="green", hover_color="#014B05")
+
+            def check_information_usuary_register(password, confirm_password, usuary_terms_checkbox):
+                if len(password) < 4:
+                    return False
+                elif password != confirm_password:
+                    return False
+                elif usuary_terms_checkbox == 0:
+                    return False
+                else:
+                    return True
+
+            def save():
+                username_entry = username.get()
+                email_entry = email.get()
+                password_entry = password.get()
+                confirm_password_entry = confirm_password.get()
+                usuary_terms_checkbox_entry = usuary_terms_checkbox.get()
+
+                if check_information_usuary_register(password_entry, confirm_password_entry, usuary_terms_checkbox_entry):
+                    db = DataBase.DataBase()
+                    if db.add_user(username_entry, password_entry, email_entry):
+                        back()
+                    else:
+                        span_1 = ctk.CTkLabel(master=rg_frame, text="Usuário já existente", font=("Roboto", 10), text_color="red")
+                        span_1.place(x=25, y=55)
+                else:
+                    span = ctk.CTkLabel(master=rg_frame, text="Por favor, preencha todos os campos corretamente.", font=("Roboto", 10), text_color="red")
+                    span.place(x=25, y=75)
+
+            save_button = ctk.CTkButton(master=rg_frame, text="CADASTRAR", width=145, fg_color="green", hover_color="#014B05", command=save)
             save_button.place(x=180, y=300)
       
         register_span = ctk.CTkLabel(master=login_frame, text="Não tem uma conta?")
